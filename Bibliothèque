@@ -1,0 +1,73 @@
+from datetime import datetime, timedelta
+from Document import Document
+
+
+
+class Emprunt:
+
+    def __init__(self, adherent, livre, date_emprunt):
+        self.adherent = adherent
+        self.livre = livre
+        self.date_emprunt = date_emprunt
+        self.date_retour = None
+
+
+    def prolongerDateRetour(self):
+        # Code for prolonger la date de retour
+        if self.date_retour is None:
+            self.date_retour = datetime.now() + timedelta(days=7)
+        else:
+            print("La date de retour ne peut être prolongée qu'une fois.")
+
+    def __str__(self):
+        return "[Emprunt titre : " + str(self.livre) + " date : " + str(self.date_emprunt) + " ]"
+
+
+class Bibliotheque:
+
+    def __init__(self):
+        self.listeAdherents = []
+        self.listeDocuments = []
+        self.listeEmprunts = []
+
+
+    def ajouterAdherent(self, adherent):
+        self.listeAdherents.append(adherent)
+
+    def enleverAdherent(self, adherent):
+        self.listeAdherents.remove(adherent)
+
+    def listerAdherents(self):
+        for x in self.listeAdherents:
+            print(x)  # x est de type Docuement il a __str__ comme déja défini
+
+    def getAdherent(self, adherentIndex):
+        return self.listeAdherents[adherentIndex]
+
+
+    def ajouterDocument(self, doc):
+        self.listeDocuments.append(doc)
+
+    def enleverDocument(self, doc):
+        self.listeDocuments.remove(doc)
+
+    def listerDocuments(self):
+        for x in self.listeDocuments:
+            print(x) # x est de type Docuement il a __str__ comme déja défini
+
+    def getDocument(self, docIndex):
+        return self.listeDocuments[docIndex]
+
+
+    def ajouterEmprunt(self, empr):
+        self.listeEmprunts.append(empr)
+
+    def supprimerEmprunt(self, empr):
+        self.listeEmprunts.remove(empr)
+
+    def listerEmprunts(self):
+        for x in self.listeEmprunts:
+            print(x)  # x est de type Docuement il a __str__ comme déja défini
+
+    def getEmprunt(self, emprIndex):
+        return self.listeEmprunts[emprIndex]
