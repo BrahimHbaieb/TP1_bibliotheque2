@@ -1,0 +1,32 @@
+from datetime import datetime, timedelta
+
+class Document:
+    def __init__(self, titre):
+        self.titre = titre
+
+class Journal(Document):
+    def __init__(self, doc, date_parution):
+        super().__init__(doc.titre)
+        self.date_parution = date_parution
+
+class Volume(Document):
+    def __init__(self, doc, auteur):
+        super().__init__(doc.titre)
+        self.auteur = auteur
+
+class BD(Volume):
+    def __init__(self, doc, vol, dessinateur):
+        super().__init__(doc.titre, vol.auteur)
+        self.dessinateur = dessinateur
+
+class Dictionnaire(Volume):
+    def __init__(self, doc, vol):
+        super().__init__(doc.titre, vol.auteur)
+
+class Livre(Volume):
+    def __init__(self, doc, vol, disponible):
+        super().__init__(doc, vol.auteur)
+        self.disponible = disponible
+
+    def empruntable(self):
+        return self.disponible
